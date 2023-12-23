@@ -1,20 +1,21 @@
 library(shiny)
 
-# Define UI for application that calculate the needed sample size 
 shinyUI(pageWithSidebar(
   
-  # Application title
-  headerPanel("Sample size calculator"),
+  headerPanel("Sample size for Case Control study"),
   
-  # Sidebar with numeric inputs for significance level, expected rate, acceptable error range.
   sidebarPanel(
-    numericInput("Sig", "Two-sided significance level:", min = 0, max = 1.000, value = 0.05),
-    numericInput("p", "The expected rate:", min = 0, max = 1, value = 0.5),
-    numericInput("X", "Acceptable error range:", min = 0, max = 1, value = 0.03)
+    numericInput("alpha", "Two-sided significance level:", min = 0.001, max = 0.999, value = 0.05),
+    numericInput("power", "Power:", min = 0.001, max = 0.999, value = 0.8),
+    numericInput("OR", "Smallest difference of clinical/biological importance:", min = 0.01, max = 100, value = 1.5),
+    numericInput("r", "The ratio of Case/Control:", min = 0.01, max = 100, value = 1),
+    numericInput("p0", "Proportion of controls with exposures:", min = 0.001, max = 0.999, value = 0.2)    
   ),
   
-  # Show the outcome
   mainPanel(
-    h3(textOutput("Size"))
+    h3(textOutput("text1")),
+    h4(textOutput("text2")),
+    h3(textOutput("text3")),
+    h4(textOutput("text4"))
   )
 ))
